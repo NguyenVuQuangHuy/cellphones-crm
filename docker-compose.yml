@@ -1,37 +1,38 @@
 services:
-  database:
-    image: mariadb:11.4
-    restart: unless-stopped
-    environment:
-      MARIADB_DATABASE: ${WP_DB_NAME:?Copy .env.example to .env and set WP_DB_NAME}
-      MARIADB_USER: ${WP_DB_USER:?Copy .env.example to .env and set WP_DB_USER}
-      MARIADB_PASSWORD: ${WP_DB_PASSWORD:?Set WP_DB_PASSWORD in .env}
-      MARIADB_ROOT_PASSWORD: ${WP_DB_ROOT_PASSWORD:?Set WP_DB_ROOT_PASSWORD in .env}
-    volumes:
-      - cellphones_wp_db:/var/lib/mysql
-    healthcheck:
-      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
-      interval: 5s
-      timeout: 5s
-      retries: 20
+    database:
+        image: mariadb:11.4
+        restart: unless-stopped
+        environment:
+            MARIADB_DATABASE: ${WP_DB_NAME:?Copy .env.example to .env and set WP_DB_NAME}
+            MARIADB_USER: ${WP_DB_USER:?Copy .env.example to .env and set WP_DB_USER}
+            MARIADB_PASSWORD: ${WP_DB_PASSWORD:?Set WP_DB_PASSWORD in .env}
+            MARIADB_ROOT_PASSWORD: ${WP_DB_ROOT_PASSWORD:?Set WP_DB_ROOT_PASSWORD in .env}
+        volumes:
+            - cellphones_wp_db:/var/lib/mysql
+        healthcheck:
+            test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+            interval: 5s
+            timeout: 5s
+            retries: 20
 
-  wordpress:
-    image: wordpress:php8.3-apache
-    restart: unless-stopped
-    depends_on:
-      database:
-        condition: service_healthy
-    ports:
-      - "127.0.0.1:8080:80"
-    environment:
-      WORDPRESS_DB_HOST: database:3306
-      WORDPRESS_DB_USER: ${WP_DB_USER:?Set WP_DB_USER in .env}
-      WORDPRESS_DB_PASSWORD: ${WP_DB_PASSWORD:?Set WP_DB_PASSWORD in .env}
-      WORDPRESS_DB_NAME: ${WP_DB_NAME:?Set WP_DB_NAME in .env}
-    volumes:
-      - cellphones_wp_files:/var/www/html
-      - ./cellphones-web:/var/www/html/wp-content/plugins/cellphones-portal
+    wordpress:
+        image: wordpress:php8.3-apache
+        restart: unless-stopped
+        depends_on:
+            database:
+                condition: service_healthy
+        ports:
+            - "127.0.0.1:8081:80"
+        environment:
+            WORDPRESS_DB_HOST: database:3306
+            WORDPRESS_DB_USER: ${WP_DB_USER:?Set WP_DB_USER in .env}
+            WORDPRESS_DB_PASSWORD: ${WP_DB_PASSWORD:?Set WP_DB_PASSWORD in .env}
+            WORDPRESS_DB_NAME: ${WP_DB_NAME:?Set WP_DB_NAME in .env}
+        volumes:
+            - ./.env:/run/secrets/cellphones.env:ro
+            - cellphones_wp_files:/var/www/html
+            - ./cellphones-web:/var/www/html/wp-content/plugins/cellphones-portal
 
 volumes:
-  cellphones_wp_db:
-  cellphones_wp_files:
+    cellphones_wp_db:
+    cellphones_wp_files:

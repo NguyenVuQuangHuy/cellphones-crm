@@ -2,7 +2,7 @@
 declare(strict_types=1);
 
 $settings = parse_ini_file(
-    dirname(__DIR__) . '/.env',
+    '/run/secrets/cellphones.env',
     false,
     INI_SCANNER_RAW
 );
@@ -29,10 +29,10 @@ if (!is_int($cacheTtl) || $cacheTtl < 0) {
     throw new RuntimeException('CACHE_TTL_SECONDS phải là số nguyên không âm.');
 }
 // Bật true để phát triển và kiểm thử giao diện mà không cần khóa API.
-define('MOCK_MODE', true);
-define('ODOO_BASE_URL', 'https://edu-cellphones.odoo.com');
-define('ODOO_DB', 'edu-cellphones');
-define('ODOO_USER_API_KEY', '<ODOO_USER_API_KEY>');
+define('MOCK_MODE', $mockMode);
+define('ODOO_BASE_URL', $get('ODOO_BASE_URL'));
+define('ODOO_DB', $get('ODOO_DB'));
+define('ODOO_USER_API_KEY', $get('ODOO_USER_API_KEY'));
 
 // Tùy chọn QT01: để trống để dùng luồng fallback CRM an toàn.
 define('GEMINI_API_KEY', '');
