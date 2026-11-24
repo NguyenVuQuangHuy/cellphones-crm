@@ -1,0 +1,407 @@
+[
+  {
+    "id": 187,
+    "default_code": "SP-AU-AIRPODS4",
+    "name": "Tai Nghe Bluetooth Apple AirPods 4 Chống Ồn (ANC)",
+    "list_price": 4590000.0,
+    "qty_available": 0.0,
+    "description_sale": "Bảo hành chính hãng Apple VN/A 12 tháng.",
+    "category": "Âm thanh"
+  },
+  {
+    "id": 189,
+    "default_code": "SP-AU-JBL-FL6",
+    "name": "Loa Bluetooth JBL Flip 6 Đen",
+    "list_price": 2690000.0,
+    "qty_available": 0.0,
+    "description_sale": "Bảo hành chính hãng PGI 12 tháng.",
+    "category": "Âm thanh"
+  },
+  {
+    "id": 188,
+    "default_code": "SP-AU-SONY-XM5",
+    "name": "Tai Nghe Chụp Tai Sony WH-1000XM5 Đen",
+    "list_price": 7990000.0,
+    "qty_available": 0.0,
+    "description_sale": "Bảo hành chính hãng Sony Việt Nam 12 tháng.",
+    "category": "Âm thanh"
+  },
+  {
+    "id": 153,
+    "default_code": "SP-IP14-128",
+    "name": "iPhone 14 128GB Trắng (VN/A)",
+    "list_price": 16990000.0,
+    "qty_available": 0.0,
+    "description_sale": "Bảo hành chính hãng Apple VN/A 12 tháng theo số IMEI.",
+    "category": "Điện thoại"
+  },
+  {
+    "id": 150,
+    "default_code": "SP-IP15PM-256-TN",
+    "name": "iPhone 15 Pro Max 256GB Titan Tự Nhiên (VN/A)",
+    "list_price": 29490000.0,
+    "qty_available": 0.0,
+    "description_sale": "Bảo hành chính hãng Apple VN/A 12 tháng liên chi nhánh CH01 & CH02 theo số IMEI.",
+    "category": "Điện thoại"
+  },
+  {
+    "id": 151,
+    "default_code": "SP-IP15PM-256-TX",
+    "name": "iPhone 15 Pro Max 256GB Titan Xanh (VN/A)",
+    "list_price": 29290000.0,
+    "qty_available": 0.0,
+    "description_sale": "Bảo hành chính hãng Apple VN/A 12 tháng liên chi nhánh CH01 & CH02 theo số IMEI.",
+    "category": "Điện thoại"
+  },
+  {
+    "id": 152,
+    "default_code": "SP-IP15PM-512-TD",
+    "name": "iPhone 15 Pro Max 512GB Titan Đen (VN/A)",
+    "list_price": 34990000.0,
+    "qty_available": 0.0,
+    "description_sale": "Bảo hành chính hãng Apple VN/A 12 tháng liên chi nhánh CH01 & CH02 theo số IMEI.",
+    "category": "Điện thoại"
+  },
+  {
+    "id": 149,
+    "default_code": "SP-IP18-128",
+    "name": "iPhone 18 128GB Đen (VN/A)",
+    "list_price": 22990000.0,
+    "qty_available": 0.0,
+    "description_sale": "Bảo hành chính hãng 12 tháng liên chi nhánh CH01 & CH02 theo số IMEI.",
+    "category": "Điện thoại"
+  },
+  {
+    "id": 148,
+    "default_code": "SP-IP18P-256",
+    "name": "iPhone 18 Pro 256GB Titan Trắng (VN/A)",
+    "list_price": 30990000.0,
+    "qty_available": 0.0,
+    "description_sale": "Bảo hành chính hãng 12 tháng liên chi nhánh CH01 & CH02 theo số IMEI.",
+    "category": "Điện thoại"
+  },
+  {
+    "id": 146,
+    "default_code": "SP-IP18PM-256",
+    "name": "iPhone 18 Pro Max 256GB Titan Tự Nhiên (VN/A)",
+    "list_price": 34990000.0,
+    "qty_available": 2.0,
+    "description_sale": "Bảo hành chính hãng 12 tháng liên chi nhánh CH01 & CH02 theo số IMEI trên phiếu xuất kho WH/OUT.",
+    "category": "Điện thoại"
+  },
+  {
+    "id": 147,
+    "default_code": "SP-IP18PM-512",
+    "name": "iPhone 18 Pro Max 512GB Titan Đen (VN/A)",
+    "list_price": 40990000.0,
+    "qty_available": 0.0,
+    "description_sale": "Bảo hành chính hãng 12 tháng liên chi nhánh CH01 & CH02 theo số IMEI.",
+    "category": "Điện thoại"
+  },
+  {
+    "id": 171,
+    "default_code": "SP-LAP-ACER-N5",
+    "name": "Laptop Acer Nitro V 15 (i5-13420H / 16GB / 512GB / RTX 3050)",
+    "list_price": 19990000.0,
+    "qty_available": 0.0,
+    "description_sale": "Bảo hành chính hãng Acer Việt Nam 12 tháng theo số Serial.",
+    "category": "Laptop"
+  },
+  {
+    "id": 168,
+    "default_code": "SP-LAP-ASUSTUF-15",
+    "name": "Laptop ASUS TUF Gaming F15 (i7-13620H / 16GB / 512GB / RTX 4060)",
+    "list_price": 27490000.0,
+    "qty_available": 0.0,
+    "description_sale": "Bảo hành chính hãng ASUS Việt Nam 24 tháng theo số Serial.",
+    "category": "Laptop"
+  },
+  {
+    "id": 169,
+    "default_code": "SP-LAP-ASUSZB-14",
+    "name": "Laptop ASUS Zenbook 14 OLED (Ultra 5 / 16GB / 512GB)",
+    "list_price": 23990000.0,
+    "qty_available": 0.0,
+    "description_sale": "Bảo hành chính hãng ASUS Việt Nam 24 tháng theo số Serial.",
+    "category": "Laptop"
+  },
+  {
+    "id": 172,
+    "default_code": "SP-LAP-DELL-INS15",
+    "name": "Laptop Dell Inspiron 15 3530 (i5-1335U / 16GB / 512GB)",
+    "list_price": 15990000.0,
+    "qty_available": 0.0,
+    "description_sale": "Bảo hành chính hãng Dell Việt Nam 12 tháng theo số Service Tag.",
+    "category": "Laptop"
+  },
+  {
+    "id": 170,
+    "default_code": "SP-LAP-HP-VIC16",
+    "name": "Laptop HP Victus 16 (Ryzen 5 7640HS / 16GB / 512GB / RTX 4050)",
+    "list_price": 22490000.0,
+    "qty_available": 0.0,
+    "description_sale": "Bảo hành chính hãng HP Việt Nam 12 tháng theo số Serial.",
+    "category": "Laptop"
+  },
+  {
+    "id": 164,
+    "default_code": "SP-LAP-IDP5-16G",
+    "name": "Laptop Lenovo IdeaPad Slim 5 14IMH9 (Ultra 5 / 16GB / 512GB)",
+    "list_price": 18490000.0,
+    "qty_available": 0.0,
+    "description_sale": "Bảo hành chính hãng Lenovo Việt Nam 24 tháng theo số Serial.",
+    "category": "Laptop"
+  },
+  {
+    "id": 162,
+    "default_code": "SP-LAP-LOQ15-16G",
+    "name": "Laptop Lenovo LOQ 15IAX9 (i5-12450HX / 16GB / 512GB / RTX 3050)",
+    "list_price": 21990000.0,
+    "qty_available": 2.0,
+    "description_sale": "Bảo hành chính hãng Lenovo Việt Nam 24 tháng theo số Serial máy.",
+    "category": "Laptop"
+  },
+  {
+    "id": 163,
+    "default_code": "SP-LAP-LOQ15-1TB",
+    "name": "Laptop Lenovo LOQ 15IAX9 Bản Nâng Cấp (16GB / 1TB SSD)",
+    "list_price": 23490000.0,
+    "qty_available": 0.0,
+    "description_sale": "Bảo hành chính hãng Lenovo Việt Nam 24 tháng theo số Serial máy.",
+    "category": "Laptop"
+  },
+  {
+    "id": 173,
+    "default_code": "SP-LAP-MSI-MOD14",
+    "name": "Laptop MSI Modern 14 (i5-1235U / 16GB / 512GB)",
+    "list_price": 12490000.0,
+    "qty_available": 0.0,
+    "description_sale": "Bảo hành chính hãng MSI Việt Nam 24 tháng theo số Serial.",
+    "category": "Laptop"
+  },
+  {
+    "id": 165,
+    "default_code": "SP-MAC-M3-256",
+    "name": "Apple MacBook Air M3 13 inch 16GB 256GB Starlight",
+    "list_price": 26990000.0,
+    "qty_available": 0.0,
+    "description_sale": "Bảo hành chính hãng Apple VN/A 12 tháng liên chi nhánh CH01 & CH02.",
+    "category": "Laptop"
+  },
+  {
+    "id": 166,
+    "default_code": "SP-MAC-M3-512",
+    "name": "Apple MacBook Air M3 13 inch 16GB 512GB Midnight",
+    "list_price": 31990000.0,
+    "qty_available": 0.0,
+    "description_sale": "Bảo hành chính hãng Apple VN/A 12 tháng theo số Serial.",
+    "category": "Laptop"
+  },
+  {
+    "id": 167,
+    "default_code": "SP-MAC-P14M4-512",
+    "name": "Apple MacBook Pro 14 M4 16GB 512GB Space Black",
+    "list_price": 39990000.0,
+    "qty_available": 0.0,
+    "description_sale": "Bảo hành chính hãng Apple VN/A 12 tháng theo số Serial.",
+    "category": "Laptop"
+  },
+  {
+    "id": 160,
+    "default_code": "SP-OP-R12-256",
+    "name": "OPPO Reno12 5G 256GB Bạc Vũ Trụ",
+    "list_price": 11990000.0,
+    "qty_available": 0.0,
+    "description_sale": "Bảo hành chính hãng OPPO Việt Nam 12 tháng theo số IMEI.",
+    "category": "Điện thoại"
+  },
+  {
+    "id": 183,
+    "default_code": "SP-PK-APPLE-20W",
+    "name": "Củ Sạc Nhanh Apple 20W Type-C Chính Hãng (VN/A)",
+    "list_price": 490000.0,
+    "qty_available": 0.0,
+    "description_sale": "Bảo hành 12 tháng 1 đổi 1 chính hãng Apple VN/A.",
+    "category": "Phụ kiện"
+  },
+  {
+    "id": 186,
+    "default_code": "SP-PK-CAP-CC100W",
+    "name": "Cáp Sạc Nhanh Baseus Type-C to Type-C 100W 2m",
+    "list_price": 190000.0,
+    "qty_available": 0.0,
+    "description_sale": "Bảo hành 12 tháng 1 đổi 1 tại CH01 & CH02.",
+    "category": "Phụ kiện"
+  },
+  {
+    "id": 190,
+    "default_code": "SP-PK-CHUOT-MX3S",
+    "name": "Chuột Không Dây Logitech MX Master 3S Đen",
+    "list_price": 2390000.0,
+    "qty_available": 0.0,
+    "description_sale": "Bảo hành chính hãng Logitech 12 tháng.",
+    "category": "Phụ kiện"
+  },
+  {
+    "id": 182,
+    "default_code": "SP-PK-GAN65W-2C",
+    "name": "Củ Sạc Nhanh GaN 65W Anker Nano II 2 Cổng",
+    "list_price": 690000.0,
+    "qty_available": 0.0,
+    "description_sale": "Bảo hành chính hãng 18 tháng tại CH01 & CH02.",
+    "category": "Phụ kiện"
+  },
+  {
+    "id": 181,
+    "default_code": "SP-PK-GAN65W-3C",
+    "name": "Củ Sạc Nhanh GaN 65W Baseus 3 Cổng (2C + 1A)",
+    "list_price": 590000.0,
+    "qty_available": 20.0,
+    "description_sale": "Bảo hành 12 tháng 1 đổi 1 tại quầy CH01 & CH02.",
+    "category": "Phụ kiện"
+  },
+  {
+    "id": 184,
+    "default_code": "SP-PK-SDP-ANK10K",
+    "name": "Pin Sạc Dự Phòng Anker PowerCore 10000mAh 22.5W",
+    "list_price": 790000.0,
+    "qty_available": 0.0,
+    "description_sale": "Bảo hành 18 tháng 1 đổi 1 tại CH01 & CH02.",
+    "category": "Phụ kiện"
+  },
+  {
+    "id": 185,
+    "default_code": "SP-PK-SDP-BASE20K",
+    "name": "Pin Sạc Dự Phòng Baseus Bipow 20000mAh 20W",
+    "list_price": 650000.0,
+    "qty_available": 0.0,
+    "description_sale": "Bảo hành 12 tháng 1 đổi 1 tại CH01 & CH02.",
+    "category": "Phụ kiện"
+  },
+  {
+    "id": 161,
+    "default_code": "SP-ROG-8P-512",
+    "name": "ASUS ROG Phone 8 Pro 512GB Đen Phantom",
+    "list_price": 25990000.0,
+    "qty_available": 0.0,
+    "description_sale": "Bảo hành chính hãng ASUS Việt Nam 12 tháng theo số IMEI.",
+    "category": "Điện thoại"
+  },
+  {
+    "id": 157,
+    "default_code": "SP-SS-A55-128",
+    "name": "Samsung Galaxy A55 5G 128GB Xanh Iceblue",
+    "list_price": 9490000.0,
+    "qty_available": 0.0,
+    "description_sale": "Bảo hành chính hãng Samsung Việt Nam 12 tháng theo số IMEI.",
+    "category": "Điện thoại"
+  },
+  {
+    "id": 154,
+    "default_code": "SP-SS-S25U-256",
+    "name": "Samsung Galaxy S25 Ultra 256GB Xám Titan",
+    "list_price": 28990000.0,
+    "qty_available": 0.0,
+    "description_sale": "Bảo hành chính hãng Samsung Việt Nam 12 tháng theo số IMEI.",
+    "category": "Điện thoại"
+  },
+  {
+    "id": 155,
+    "default_code": "SP-SS-S25U-512",
+    "name": "Samsung Galaxy S25 Ultra 512GB Đen Titan",
+    "list_price": 32990000.0,
+    "qty_available": 0.0,
+    "description_sale": "Bảo hành chính hãng Samsung Việt Nam 12 tháng theo số IMEI.",
+    "category": "Điện thoại"
+  },
+  {
+    "id": 156,
+    "default_code": "SP-SS-ZFL6-256",
+    "name": "Samsung Galaxy Z Flip6 5G 256GB Xanh Mint",
+    "list_price": 21990000.0,
+    "qty_available": 0.0,
+    "description_sale": "Bảo hành chính hãng Samsung Việt Nam 12 tháng theo số IMEI.",
+    "category": "Điện thoại"
+  },
+  {
+    "id": 178,
+    "default_code": "SP-SW-AW10-42",
+    "name": "Apple Watch Series 10 GPS 42mm Nhôm Đen Bóng",
+    "list_price": 10490000.0,
+    "qty_available": 0.0,
+    "description_sale": "Bảo hành chính hãng Apple VN/A 12 tháng theo số Serial.",
+    "category": "Đồng hồ thông minh"
+  },
+  {
+    "id": 180,
+    "default_code": "SP-SW-GARMIN-165",
+    "name": "Đồng hồ Garmin Forerunner 165 Đen",
+    "list_price": 6690000.0,
+    "qty_available": 0.0,
+    "description_sale": "Bảo hành chính hãng Garmin Việt Nam 12 tháng theo số Serial.",
+    "category": "Đồng hồ thông minh"
+  },
+  {
+    "id": 179,
+    "default_code": "SP-SW-SS-GW7",
+    "name": "Samsung Galaxy Watch7 40mm Bluetooth Xanh",
+    "list_price": 6990000.0,
+    "qty_available": 0.0,
+    "description_sale": "Bảo hành chính hãng Samsung Việt Nam 12 tháng theo số Serial.",
+    "category": "Đồng hồ thông minh"
+  },
+  {
+    "id": 174,
+    "default_code": "SP-TAB-IPADAIR6-128",
+    "name": "iPad Air 6 M2 11 inch WiFi 128GB Xanh Dương",
+    "list_price": 15990000.0,
+    "qty_available": 0.0,
+    "description_sale": "Bảo hành chính hãng Apple VN/A 12 tháng theo số Serial.",
+    "category": "Tablet"
+  },
+  {
+    "id": 175,
+    "default_code": "SP-TAB-IPADG10-64",
+    "name": "iPad Gen 10 10.9 inch WiFi 64GB Bạc",
+    "list_price": 9290000.0,
+    "qty_available": 0.0,
+    "description_sale": "Bảo hành chính hãng Apple VN/A 12 tháng theo số Serial.",
+    "category": "Tablet"
+  },
+  {
+    "id": 176,
+    "default_code": "SP-TAB-SS-S9FE",
+    "name": "Samsung Galaxy Tab S9 FE WiFi 128GB Xám",
+    "list_price": 8990000.0,
+    "qty_available": 0.0,
+    "description_sale": "Bảo hành chính hãng Samsung Việt Nam 12 tháng theo số Serial.",
+    "category": "Tablet"
+  },
+  {
+    "id": 177,
+    "default_code": "SP-TAB-XM-PAD6",
+    "name": "Xiaomi Pad 6 8GB 256GB Xám",
+    "list_price": 8490000.0,
+    "qty_available": 0.0,
+    "description_sale": "Bảo hành chính hãng Xiaomi Việt Nam 18 tháng theo số Serial.",
+    "category": "Tablet"
+  },
+  {
+    "id": 158,
+    "default_code": "SP-XM-14T-256",
+    "name": "Xiaomi 14T Pro 5G 256GB Đen Titan",
+    "list_price": 14990000.0,
+    "qty_available": 0.0,
+    "description_sale": "Bảo hành chính hãng Xiaomi Việt Nam 18 tháng theo số IMEI.",
+    "category": "Điện thoại"
+  },
+  {
+    "id": 159,
+    "default_code": "SP-XM-RN13P-128",
+    "name": "Xiaomi Redmi Note 13 Pro 5G 128GB Tím",
+    "list_price": 7490000.0,
+    "qty_available": 0.0,
+    "description_sale": "Bảo hành chính hãng Xiaomi Việt Nam 18 tháng theo số IMEI.",
+    "category": "Điện thoại"
+  }
+]

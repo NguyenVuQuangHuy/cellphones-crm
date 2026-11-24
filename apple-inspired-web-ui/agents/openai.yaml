@@ -1,0 +1,8 @@
+interface:
+  display_name: "Apple-inspired Web UI"
+  short_description: "Thiết kế web tinh gọn, responsive và dễ dùng"
+  brand_color: "#D70018"
+  default_prompt: "Use $apple-inspired-web-ui to build a polished, accessible web interface that follows the current project's stack and brand."
+
+policy:
+  allow_implicit_invocation: true
