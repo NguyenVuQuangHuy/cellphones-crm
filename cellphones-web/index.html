@@ -1,116 +1,688 @@
 <!doctype html>
 <html lang="vi">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="Cổng khách hàng CellphoneS kết nối CRM, Sales, Helpdesk và Repair trên Odoo.">
-  <title>CellphoneS CRM Demo</title>
-  <link rel="stylesheet" href="assets/css/style.css">
-  <script src="assets/js/app.js" defer></script>
-</head>
-<body>
-  <a class="skip-link" href="#main">Bỏ qua điều hướng</a>
-  <header class="site-header">
-    <div class="header-inner">
-      <button class="brand" data-view="products" aria-label="Về trang sản phẩm"><img class="brand-symbol" src="assets/cellphones-mark.svg" alt=""><span>CellphoneS <small>TRẢI NGHIỆM KHÁCH HÀNG</small></span></button>
-      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav">Menu</button>
-      <nav id="main-nav" aria-label="Điều hướng chính">
-        <button class="nav-link active" data-view="products">Sản phẩm</button>
-        <button class="nav-link" data-view="consult">Tư vấn mua hàng</button>
-        <button class="nav-link" data-view="warranty">Bảo hành & Tra cứu</button>
-        <button class="nav-link nav-cart" data-view="cart">Giỏ hàng <span class="cart-badge" id="cart-count">0</span></button>
-      </nav>
-    </div>
-  </header>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <meta
+            name="description"
+            content="Cổng khách hàng CellphoneS kết nối CRM, Sales, Helpdesk và Repair trên Odoo."
+        />
+        <title>CellphoneS CRM Demo</title>
+        <link rel="stylesheet" href="assets/css/style.css" />
+        <script src="assets/js/app.js" defer></script>
+    </head>
+    <body class="cps-standalone">
+        <div class="cps-portal" lang="vi">
+            <a class="skip-link" href="#main">Bỏ qua điều hướng</a>
+            <header class="site-header">
+                <div class="header-inner">
+                    <button
+                        class="brand"
+                        data-view="products"
+                        aria-label="Về trang sản phẩm"
+                    >
+                        <img
+                            class="brand-symbol"
+                            src="assets/cellphones-mark.svg"
+                            alt=""
+                        /><span>CellphoneS <small>Cổng khách hàng</small></span>
+                    </button>
+                    <button
+                        class="menu-toggle"
+                        type="button"
+                        aria-expanded="false"
+                        aria-controls="main-nav"
+                    >
+                        Menu
+                    </button>
+                    <label class="search">
+                        <span class="sr-only"
+                            >Tìm sản phẩm theo tên hoặc mã</span
+                        >
+                        <input
+                            id="product-search"
+                            type="search"
+                            placeholder="Tìm tên thiết bị"
+                            autocomplete="off"
+                            aria-controls="product-grid"
+                        />
+                    </label>
+                    <nav id="main-nav" aria-label="Điều hướng chính">
+                        <button class="nav-link active" data-view="products">
+                            Sản phẩm
+                        </button>
+                        <button class="nav-link" data-view="consult">
+                            Tư vấn mua hàng
+                        </button>
+                        <button class="nav-link" data-view="warranty">
+                            Bảo hành & Tra cứu
+                        </button>
+                        <button class="nav-link nav-cart" data-view="cart">
+                            Giỏ hàng
+                            <span class="cart-badge" id="cart-count">0</span>
+                        </button>
+                    </nav>
+                </div>
+            </header>
 
-  <main id="main">
-    <section class="view active" id="view-products" aria-labelledby="products-title">
-      <div class="hero shell">
-        <img class="hero-image" src="assets/tech-hero.webp" alt="" width="1100" height="734" fetchpriority="high">
-        <div class="hero-copy">
-          <p class="eyebrow">Cổng khách hàng CellphoneS</p>
-          <h1 id="products-title">Công nghệ hợp gu.<br><span>An tâm khi dùng.</span></h1>
-          <p>Tìm thiết bị phù hợp, đặt hàng COD và theo dõi bảo hành ngay tại đây.</p>
-          <div class="hero-actions">
-            <a class="primary" href="#catalog">Khám phá sản phẩm</a>
-            <button class="hero-secondary" type="button" data-view="consult">Nhận tư vấn</button>
-          </div>
+            <main id="main">
+                <section
+                    class="view active"
+                    id="view-products"
+                    aria-labelledby="products-title"
+                >
+                    <div class="hero shell">
+                        <img
+                            class="hero-image"
+                            src="assets/tech-hero.webp"
+                            alt=""
+                            height="734"
+                            fetchpriority="high"
+                        />
+                    </div>
+                    <div
+                        class="shell service-links"
+                        aria-label="Truy cập nhanh"
+                    >
+                        <button
+                            class="service-link"
+                            type="button"
+                            data-view="consult"
+                        >
+                            <span
+                                class="service-icon advice-icon"
+                                aria-hidden="true"
+                                ><svg
+                                    viewBox="0 0 48 48"
+                                    fill="none"
+                                    focusable="false"
+                                >
+                                    <path
+                                        d="M9 11.5A5.5 5.5 0 0 1 14.5 6h19a5.5 5.5 0 0 1 5.5 5.5v13a5.5 5.5 0 0 1-5.5 5.5H23l-9.5 7v-7A5.5 5.5 0 0 1 9 24.5v-13Z"
+                                        stroke="currentColor"
+                                        stroke-width="2.7"
+                                        stroke-linejoin="round"
+                                    />
+                                    <circle
+                                        cx="18"
+                                        cy="18"
+                                        r="1.8"
+                                        fill="currentColor"
+                                    />
+                                    <circle
+                                        cx="24"
+                                        cy="18"
+                                        r="1.8"
+                                        fill="currentColor"
+                                    />
+                                    <circle
+                                        cx="30"
+                                        cy="18"
+                                        r="1.8"
+                                        fill="currentColor"
+                                    />
+                                    <path
+                                        d="m37 33 1.7 3.3L42 38l-3.3 1.7L37 43l-1.7-3.3L32 38l3.3-1.7L37 33Z"
+                                        fill="#FFD47B"
+                                    /></svg
+                            ></span>
+                            <span
+                                ><strong>Tư vấn mua hàng</strong
+                                ><small
+                                    >Chọn thiết bị theo nhu cầu và ngân
+                                    sách</small
+                                ></span
+                            >
+                        </button>
+                        <button
+                            class="service-link"
+                            type="button"
+                            data-view="warranty"
+                            data-open-panel="ticket-create"
+                        >
+                            <span
+                                class="service-icon warranty-icon"
+                                aria-hidden="true"
+                                ><svg
+                                    viewBox="0 0 48 48"
+                                    fill="none"
+                                    focusable="false"
+                                >
+                                    <path
+                                        d="M24 5 39 11v11c0 10.2-6.2 17.1-15 21-8.8-3.9-15-10.8-15-21V11l15-6Z"
+                                        stroke="currentColor"
+                                        stroke-width="2.8"
+                                        stroke-linejoin="round"
+                                    />
+                                    <path
+                                        d="m16.5 23.5 5 5 10-11"
+                                        stroke="currentColor"
+                                        stroke-width="3.5"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                    />
+                                    <path
+                                        d="m36 7 1.2-3 1.3 3 3 1.2-3 1.3-1.3 3-1.2-3-3-1.3 3-1.2Z"
+                                        fill="#FFD2B8"
+                                    /></svg
+                            ></span>
+                            <span
+                                ><strong>Gửi bảo hành</strong
+                                ><small
+                                    >Tiếp nhận yêu cầu tại chi nhánh</small
+                                ></span
+                            >
+                        </button>
+                        <button
+                            class="service-link"
+                            type="button"
+                            data-view="warranty"
+                            data-open-panel="ticket-check"
+                        >
+                            <span
+                                class="service-icon tracking-icon"
+                                aria-hidden="true"
+                                ><svg
+                                    viewBox="0 0 48 48"
+                                    fill="none"
+                                    focusable="false"
+                                >
+                                    <path
+                                        d="M14 6h15l9 9v25a3 3 0 0 1-3 3H14a3 3 0 0 1-3-3V9a3 3 0 0 1 3-3Z"
+                                        stroke="currentColor"
+                                        stroke-width="2.7"
+                                        stroke-linejoin="round"
+                                    />
+                                    <path
+                                        d="M28 7v9h9M18 23h12M18 29h6"
+                                        stroke="currentColor"
+                                        stroke-width="2.5"
+                                        stroke-linecap="round"
+                                    />
+                                    <circle
+                                        cx="32"
+                                        cy="33"
+                                        r="7"
+                                        fill="#075A44"
+                                        stroke="#D7FFF0"
+                                        stroke-width="2"
+                                    />
+                                    <path
+                                        d="m29.5 33 1.7 1.7 3.5-3.7"
+                                        stroke="#fff"
+                                        stroke-width="1.8"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                    /></svg
+                            ></span>
+                            <span
+                                ><strong>Tra cứu tiến độ</strong
+                                ><small
+                                    >Theo dõi phiếu và lệnh sửa chữa</small
+                                ></span
+                            >
+                        </button>
+                    </div>
+                    <div class="shell catalog-panel" id="catalog">
+                        <div class="catalog-head">
+                            <h2>Danh mục sản phẩm</h2>
+                            <p id="source-label" role="status">
+                                Đang tải danh mục…
+                            </p>
+                        </div>
+                        <div
+                            class="filters"
+                            role="group"
+                            id="category-filters"
+                            aria-label="Lọc danh mục"
+                        ></div>
+                        <label class="stock-filter"
+                            ><input id="stock-only" type="checkbox" />
+                            <span
+                                >Chỉ hiện sản phẩm có sẵn tại quầy</span
+                            ></label
+                        >
+                        <p
+                            class="sr-only"
+                            id="filter-summary"
+                            role="status"
+                        ></p>
+                        <div id="product-grid" class="product-grid">
+                            <div class="loading-grid">Đang tải sản phẩm…</div>
+                        </div>
+                    </div>
+                </section>
+
+                <section
+                    class="view shell page-section"
+                    id="view-consult"
+                    aria-labelledby="consult-title"
+                >
+                    <div class="section-intro">
+                        <h1 id="consult-title">Tư vấn mua hàng</h1>
+                        <p>
+                            Chia sẻ nhu cầu và ngân sách để chi nhánh tư vấn
+                            thiết bị phù hợp.
+                        </p>
+                    </div>
+                    <div class="form-layout">
+                        <form id="consult-form" class="form-card" novalidate>
+                            <h2>Yêu cầu tư vấn</h2>
+                            <div class="fields two">
+                                <label
+                                    >Họ và tên *<input
+                                        name="contact_name"
+                                        required
+                                        maxlength="120"
+                                        autocomplete="name" /></label
+                                ><label
+                                    >Số điện thoại *<input
+                                        name="phone"
+                                        required
+                                        inputmode="tel"
+                                        autocomplete="tel"
+                                        placeholder="0912 345 678" /></label
+                                ><label
+                                    >Email<input
+                                        name="email_from"
+                                        type="email"
+                                        autocomplete="email" /></label
+                                ><label
+                                    >Chi nhánh hỗ trợ *<select
+                                        name="branch"
+                                        required
+                                    >
+                                        <option value="CH01">
+                                            CH01 · 136 Nguyễn Thái Học
+                                        </option>
+                                        <option value="CH02">
+                                            CH02 · 21A Hàng Bài
+                                        </option>
+                                    </select></label
+                                ><label
+                                    >Nhóm ưu đãi<select name="customer_segment">
+                                        <option value="">S-New</option>
+                                        <option value="student">
+                                            S-Student
+                                        </option>
+                                        <option value="teacher">
+                                            S-Teacher
+                                        </option>
+                                    </select></label
+                                ><label
+                                    >Sản phẩm quan tâm<select
+                                        name="product_id"
+                                        id="consult-product"
+                                    >
+                                        <option value="">Nhu cầu chung</option>
+                                    </select></label
+                                >
+                            </div>
+                            <label
+                                >Nội dung cần tư vấn *<textarea
+                                    name="note"
+                                    required
+                                    rows="5"
+                                    placeholder="Ví dụ: Mình muốn hỏi ưu đãi sinh viên và chương trình thu cũ đổi mới…"
+                                ></textarea>
+                            </label>
+                            <div class="form-message" aria-live="polite"></div>
+                            <button class="primary submit-btn" type="submit">
+                                Gửi yêu cầu tư vấn
+                            </button>
+                        </form>
+                        <aside class="info-card">
+                            <h2>Chi nhánh hỗ trợ</h2>
+                            <p>
+                                Nhân viên chi nhánh bạn chọn sẽ liên hệ theo số
+                                điện thoại đã nhập.
+                            </p>
+                            <ul>
+                                <li>
+                                    <strong>CH01</strong> · 136 Nguyễn Thái Học
+                                </li>
+                                <li><strong>CH02</strong> · 21A Hàng Bài</li>
+                            </ul>
+                        </aside>
+                    </div>
+                </section>
+
+                <section
+                    class="view shell page-section"
+                    id="view-cart"
+                    aria-labelledby="cart-title"
+                >
+                    <div class="section-intro">
+                        <h1 id="cart-title">Giỏ hàng của bạn</h1>
+                        <p>
+                            Kiểm tra sản phẩm và địa chỉ giao. Chi nhánh sẽ gọi
+                            để xác nhận đơn COD.
+                        </p>
+                    </div>
+                    <div class="cart-layout">
+                        <div class="cart-card">
+                            <h2 id="cart-items-title" tabindex="-1">
+                                Sản phẩm đã chọn
+                            </h2>
+                            <div id="cart-items"></div>
+                            <div class="totals">
+                                <span
+                                    >Tạm tính
+                                    <strong id="subtotal">0 ₫</strong></span
+                                ><span
+                                    >VAT 10% tham khảo
+                                    <strong id="vat">0 ₫</strong></span
+                                ><span class="grand"
+                                    >Tổng tham khảo
+                                    <strong id="estimate">0 ₫</strong></span
+                                >
+                            </div>
+                        </div>
+                        <form
+                            id="order-form"
+                            class="form-card compact"
+                            novalidate
+                        >
+                            <h2>Thông tin nhận hàng</h2>
+                            <label
+                                >Họ và tên *<input
+                                    name="customer_name"
+                                    required
+                                    autocomplete="name" /></label
+                            ><label
+                                >Số điện thoại *<input
+                                    name="phone"
+                                    required
+                                    inputmode="tel"
+                                    autocomplete="tel" /></label
+                            ><label
+                                >Email<input
+                                    name="email"
+                                    type="email"
+                                    autocomplete="email" /></label
+                            ><label
+                                >Chi nhánh xử lý *<select name="branch">
+                                    <option value="CH01">
+                                        CH01 · 136 Nguyễn Thái Học
+                                    </option>
+                                    <option value="CH02">
+                                        CH02 · 21A Hàng Bài
+                                    </option>
+                                </select></label
+                            ><label
+                                >Địa chỉ giao COD *<textarea
+                                    name="address"
+                                    required
+                                    rows="3"
+                                    autocomplete="street-address"
+                                ></textarea></label
+                            ><label
+                                >Ghi chú<textarea
+                                    name="note"
+                                    rows="2"
+                                ></textarea>
+                            </label>
+                            <div class="form-message" aria-live="polite"></div>
+                            <button class="primary submit-btn" type="submit">
+                                Đặt hàng COD
+                            </button>
+                        </form>
+                    </div>
+                </section>
+
+                <section
+                    class="view shell page-section"
+                    id="view-warranty"
+                    aria-labelledby="warranty-title"
+                >
+                    <div class="section-intro">
+                        <h1 id="warranty-title">Bảo hành &amp; tra cứu</h1>
+                        <p>
+                            Gửi yêu cầu hỗ trợ hoặc theo dõi tiến độ bằng mã
+                            phiếu của bạn.
+                        </p>
+                    </div>
+                    <div
+                        class="subtabs"
+                        role="tablist"
+                        aria-label="Dịch vụ bảo hành"
+                    >
+                        <button
+                            class="subtab active"
+                            id="tab-ticket-create"
+                            role="tab"
+                            aria-selected="true"
+                            aria-controls="ticket-create"
+                            data-panel="ticket-create"
+                        >
+                            Gửi bảo hành
+                        </button>
+                        <button
+                            class="subtab"
+                            id="tab-ticket-check"
+                            role="tab"
+                            tabindex="-1"
+                            aria-selected="false"
+                            aria-controls="ticket-check"
+                            data-panel="ticket-check"
+                        >
+                            Tra cứu tiến độ
+                        </button>
+                    </div>
+                    <div class="subpanel active" id="ticket-create">
+                        <div class="form-layout">
+                            <form id="ticket-form" class="form-card" novalidate>
+                                <h2>Thông tin yêu cầu</h2>
+                                <div class="fields two">
+                                    <label
+                                        >Họ và tên *<input
+                                            name="partner_name"
+                                            required
+                                            autocomplete="name" /></label
+                                    ><label
+                                        >Số điện thoại *<input
+                                            name="partner_phone"
+                                            required
+                                            inputmode="tel"
+                                            autocomplete="tel" /></label
+                                    ><label
+                                        >Email<input
+                                            name="partner_email"
+                                            type="email"
+                                            autocomplete="email" /></label
+                                    ><label
+                                        >Chi nhánh tiếp nhận *<select
+                                            name="branch"
+                                        >
+                                            <option value="CH01">
+                                                CH01 · 136 Nguyễn Thái Học
+                                            </option>
+                                            <option value="CH02">
+                                                CH02 · 21A Hàng Bài
+                                            </option>
+                                        </select></label
+                                    ><label
+                                        >Loại yêu cầu *<select
+                                            name="loai_yeu_cau"
+                                        >
+                                            <option>Bảo hành sửa chữa</option>
+                                            <option>Đổi trả sản phẩm</option>
+                                            <option>
+                                                Khiếu nại / Tư vấn hậu mãi
+                                            </option>
+                                        </select></label
+                                    ><label
+                                        >Sản phẩm<select
+                                            name="product_id"
+                                            id="ticket-product"
+                                        >
+                                            <option value="">
+                                                Sản phẩm khác
+                                            </option>
+                                        </select></label
+                                    ><label
+                                        >Tên thiết bị *<input
+                                            name="ten_thiet_bi"
+                                            required /></label
+                                    ><label
+                                        >IMEI / Serial<input
+                                            name="so_imei_serial"
+                                    /></label>
+                                </div>
+                                <label
+                                    >Tiêu đề yêu cầu *<input
+                                        name="subject"
+                                        required /></label
+                                ><label
+                                    >Mô tả tình trạng *<textarea
+                                        name="description"
+                                        required
+                                        rows="4"
+                                    ></textarea>
+                                </label>
+                                <div
+                                    class="form-message"
+                                    aria-live="polite"
+                                ></div>
+                                <button
+                                    class="primary submit-btn"
+                                    type="submit"
+                                >
+                                    Gửi yêu cầu bảo hành
+                                </button>
+                            </form>
+                            <aside class="info-card amber">
+                                <h2>Thời gian tiếp nhận máy</h2>
+                                <p>
+                                    Phiếu online vào trạng thái “Chờ khách / Chờ
+                                    linh kiện”. Đồng hồ SLA 72 giờ tạm dừng cho
+                                    đến khi quầy thực sự nhận thiết bị.
+                                </p>
+                            </aside>
+                        </div>
+                    </div>
+                    <div class="subpanel" id="ticket-check">
+                        <form id="lookup-form" class="lookup-card" novalidate>
+                            <div>
+                                <h2>Tra cứu phiếu bảo hành</h2>
+                                <p>
+                                    Nhập số điện thoại đã dùng khi gửi yêu cầu bảo hành.
+                                </p>
+                            </div>
+                            <label>Số điện thoại *
+                                <input
+                                    type="tel"
+                                    name="phone"
+                                    required
+                                    inputmode="tel"
+                                    autocomplete="tel"
+                                    placeholder="0909 112 233" />
+                            </label>
+                            <button class="primary submit-btn" type="submit">
+                                Tra cứu tiến độ
+                            </button>
+                            <div class="form-message" aria-live="polite"></div>
+                        </form>
+                        <div id="ticket-result" aria-live="polite"></div>
+                    </div>
+                </section>
+            </main>
+
+            <footer class="site-footer">
+                <div class="footer-main shell">
+                    <section
+                        class="footer-brand"
+                        aria-labelledby="footer-brand-title"
+                    >
+                        <div class="footer-brand-lockup">
+                            <img
+                                src="assets/cellphones-mark.svg"
+                                alt=""
+                                width="42"
+                                height="42"
+                            />
+                            <div>
+                                <strong id="footer-brand-title"
+                                    >CellphoneS CRM</strong
+                                ><span class="demo-badge">Đồ án EC213</span>
+                            </div>
+                        </div>
+                        <p>
+                            Sản phẩm thực hành học phần EC213 · Trường Đại học
+                            Công nghệ Thông tin, ĐHQG-HCM.
+                        </p>
+                        <p class="footer-contact">
+                            <strong>Liên hệ về đồ án:</strong> qua nhóm thực
+                            hiện trên kênh học tập của học phần EC213.
+                        </p>
+                        <p class="footer-disclaimer">
+                            Đây không phải website chính thức, không đại diện
+                            hoặc liên kết với CellphoneS. Tên và nhãn hiệu
+                            CellphoneS thuộc chủ sở hữu tương ứng; chỉ được dùng
+                            để minh họa học thuật.
+                        </p>
+                    </section>
+                    <nav class="footer-nav" aria-label="Liên kết dịch vụ">
+                        <h2>Dịch vụ</h2>
+                        <button type="button" data-view="consult">
+                            Tư vấn mua hàng
+                        </button>
+                        <button
+                            type="button"
+                            data-view="warranty"
+                            data-open-panel="ticket-create"
+                        >
+                            Gửi bảo hành
+                        </button>
+                        <button
+                            type="button"
+                            data-view="warranty"
+                            data-open-panel="ticket-check"
+                        >
+                            Tra cứu tiến độ
+                        </button>
+                    </nav>
+                    <section
+                        class="footer-legal"
+                        aria-labelledby="footer-legal-title"
+                    >
+                        <h2 id="footer-legal-title">
+                            Thông tin &amp; chính sách
+                        </h2>
+                        <details>
+                            <summary>Thông tin sản phẩm và giao dịch</summary>
+                            <p><!-- COMMERCE-NOTICE --></p>
+                            <p class="standalone-notice">
+                                Giá và số lượng phục vụ đồ án học tập. Tổng tiền
+                                trong giỏ là giá trị tham khảo.
+                            </p>
+                        </details>
+                        <details>
+                            <summary>Quyền riêng tư và dữ liệu</summary>
+                            <p><!-- MODE-NOTICE --></p>
+                            <p>
+                                Không dùng biểu mẫu tra cứu để truy cập dữ liệu
+                                của người khác.
+                            </p>
+                        </details>
+                        <details>
+                            <summary>Điều kiện sử dụng</summary>
+                            <p>
+                                Chỉ sử dụng cho học tập và trình diễn nội bộ.
+                                Không dựa vào nội dung, giá hoặc thông tin bảo
+                                hành tại đây để đưa ra quyết định mua hàng hay
+                                yêu cầu dịch vụ thực tế.
+                            </p>
+                        </details>
+                    </section>
+                </div>
+            </footer>
+            <div
+                class="toast"
+                id="toast"
+                role="status"
+                aria-live="polite"
+            ></div>
         </div>
-      </div>
-      <div class="shell service-links" aria-label="Truy cập nhanh">
-        <button class="service-link violet" type="button" data-view="consult">
-          <span class="service-icon advice-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" focusable="false"><path d="M9 11.5A5.5 5.5 0 0 1 14.5 6h19a5.5 5.5 0 0 1 5.5 5.5v13a5.5 5.5 0 0 1-5.5 5.5H23l-9.5 7v-7A5.5 5.5 0 0 1 9 24.5v-13Z" stroke="currentColor" stroke-width="2.7" stroke-linejoin="round"/><circle cx="18" cy="18" r="1.8" fill="currentColor"/><circle cx="24" cy="18" r="1.8" fill="currentColor"/><circle cx="30" cy="18" r="1.8" fill="currentColor"/><path d="m37 33 1.7 3.3L42 38l-3.3 1.7L37 43l-1.7-3.3L32 38l3.3-1.7L37 33Z" fill="#FFD47B"/></svg></span>
-          <span><strong>Tư vấn mua hàng</strong><small>Chọn thiết bị theo nhu cầu và ngân sách</small></span>
-        </button>
-        <button class="service-link coral" type="button" data-view="warranty" data-open-panel="ticket-create">
-          <span class="service-icon warranty-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" focusable="false"><path d="M24 5 39 11v11c0 10.2-6.2 17.1-15 21-8.8-3.9-15-10.8-15-21V11l15-6Z" stroke="currentColor" stroke-width="2.8" stroke-linejoin="round"/><path d="m16.5 23.5 5 5 10-11" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/><path d="m36 7 1.2-3 1.3 3 3 1.2-3 1.3-1.3 3-1.2-3-3-1.3 3-1.2Z" fill="#FFD2B8"/></svg></span>
-          <span><strong>Gửi bảo hành</strong><small>Tiếp nhận yêu cầu tại chi nhánh</small></span>
-        </button>
-        <button class="service-link mint" type="button" data-view="warranty" data-open-panel="ticket-check">
-          <span class="service-icon tracking-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" focusable="false"><path d="M14 6h15l9 9v25a3 3 0 0 1-3 3H14a3 3 0 0 1-3-3V9a3 3 0 0 1 3-3Z" stroke="currentColor" stroke-width="2.7" stroke-linejoin="round"/><path d="M28 7v9h9M18 23h12M18 29h6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><circle cx="32" cy="33" r="7" fill="#075A44" stroke="#D7FFF0" stroke-width="2"/><path d="m29.5 33 1.7 1.7 3.5-3.7" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-          <span><strong>Tra cứu tiến độ</strong><small>Theo dõi phiếu và lệnh sửa chữa</small></span>
-        </button>
-      </div>
-      <div class="shell catalog-panel" id="catalog">
-        <div class="catalog-head"><div><h2>Danh mục sản phẩm</h2><p id="source-label" role="status">Đang kết nối dữ liệu…</p></div><label class="search"><span class="sr-only">Tìm sản phẩm</span><input id="product-search" type="search" placeholder="Tìm tên hoặc mã SP-*" autocomplete="off"></label></div>
-        <div class="filters" id="category-filters" aria-label="Lọc danh mục"></div>
-        <label class="stock-filter"><input id="stock-only" type="checkbox"> <span>Chỉ hiện sản phẩm có sẵn tại quầy</span><small>Phù hợp demo xuất kho WH/OUT</small></label>
-        <div id="product-grid" class="product-grid" aria-live="polite"><div class="loading-grid">Đang tải 45 sản phẩm từ Odoo…</div></div>
-      </div>
-    </section>
-
-    <section class="view shell page-section" id="view-consult" aria-labelledby="consult-title">
-      <div class="section-intro consult-intro">
-        <div class="section-copy"><p class="eyebrow"><span class="section-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 6.5A3.5 3.5 0 0 1 7.5 3h9A3.5 3.5 0 0 1 20 6.5v6a3.5 3.5 0 0 1-3.5 3.5H11l-5 4v-4.4A3.5 3.5 0 0 1 4 12.5v-6Z" stroke="currentColor" stroke-width="1.8"/><path d="M8 9h8M8 12h5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span> Tư vấn mua hàng</p><h1 id="consult-title">Chọn đúng thiết bị.<br><span>An tâm đúng nhu cầu.</span></h1><p>Chia sẻ mục đích sử dụng và ngân sách, đội ngũ tư vấn sẽ giúp bạn tìm lựa chọn phù hợp.</p><div class="banner-points"><span>01 · Lắng nghe nhu cầu</span><span>02 · Gợi ý theo ngân sách</span></div></div>
-        <div class="section-art consult-art" aria-hidden="true"><svg viewBox="0 0 480 300" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="consultPhone" x1="92" y1="23" x2="262" y2="286" gradientUnits="userSpaceOnUse"><stop stop-color="#FFF"/><stop offset="1" stop-color="#E8E1FF"/></linearGradient><linearGradient id="consultTile" x1="105" y1="160" x2="210" y2="212" gradientUnits="userSpaceOnUse"><stop stop-color="#9B7BFF"/><stop offset="1" stop-color="#5C3FC9"/></linearGradient><filter id="consultShadow" x="39" y="2" width="426" height="305" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feDropShadow dx="0" dy="14" stdDeviation="13" flood-color="#0D0825" flood-opacity=".36"/></filter></defs><circle cx="270" cy="151" r="132" fill="#B7A2FF" fill-opacity=".13"/><circle cx="270" cy="151" r="98" stroke="#D9CEFF" stroke-opacity=".2" stroke-dasharray="4 9"/><g filter="url(#consultShadow)"><rect x="70" y="18" width="190" height="264" rx="28" fill="#1E1940" stroke="#FFFFFF" stroke-opacity=".42" stroke-width="2"/><rect x="81" y="31" width="168" height="237" rx="19" fill="url(#consultPhone)"/><rect x="140" y="38" width="50" height="5" rx="2.5" fill="#A29BB8"/><text x="96" y="68" fill="#6A579F" font-family="Arial,sans-serif" font-size="9" font-weight="700" letter-spacing="1.3">TƯ VẤN CÁ NHÂN</text><circle cx="111" cy="94" r="14" fill="#FFE0C7"/><path d="M104 95c3-8 12-8 15 0" stroke="#9C5D48" stroke-width="2" stroke-linecap="round"/><path d="M135 88h83M135 96h60" stroke="#B9B2C9" stroke-width="4" stroke-linecap="round"/><rect x="96" y="119" width="138" height="1" fill="#DCD7E8"/><text x="97" y="141" fill="#41375F" font-family="Arial,sans-serif" font-size="10" font-weight="700">GỢI Ý CHO BẠN</text><rect x="96" y="151" width="138" height="56" rx="12" fill="url(#consultTile)"/><rect x="106" y="162" width="35" height="35" rx="9" fill="#FFFFFF" fill-opacity=".2"/><path d="M119 169h10l4 17h-17l3-17Z" stroke="#FFF" stroke-width="2" stroke-linejoin="round"/><circle cx="120" cy="190" r="2" fill="#FFF"/><circle cx="130" cy="190" r="2" fill="#FFF"/><path d="M151 166h68M151 174h52" stroke="#FFF" stroke-opacity=".86" stroke-width="4" stroke-linecap="round"/><rect x="151" y="184" width="46" height="12" rx="6" fill="#FFFFFF" fill-opacity=".2"/><path d="M102 226h126" stroke="#D3CDDF" stroke-width="4" stroke-linecap="round"/><path d="M102 237h94" stroke="#D3CDDF" stroke-width="4" stroke-linecap="round"/><circle cx="214" cy="237" r="10" fill="#12B993"/><path d="m209.5 237 3 3 6-6" stroke="#FFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g><g filter="url(#consultShadow)"><rect x="271" y="59" width="157" height="80" rx="17" fill="#FFF"/><circle cx="293" cy="84" r="9" fill="#FFB3C5"/><path d="M289 85c2-5 7-5 9 0" stroke="#9B2949" stroke-width="1.7" stroke-linecap="round"/><path d="M309 80h98M309 88h75" stroke="#BEB7CB" stroke-width="4" stroke-linecap="round"/><rect x="289" y="104" width="120" height="21" rx="10.5" fill="#F0ECFF"/><path d="m302 114 3 3 6-7" stroke="#6750C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M314 114h78" stroke="#8172AB" stroke-width="3" stroke-linecap="round"/></g><circle cx="393" cy="203" r="27" fill="#FFB75E"/><path d="m393 185 5.4 11 12.1 1.8-8.8 8.5 2.1 12-10.8-5.7-10.8 5.7 2.1-12-8.8-8.5 12.1-1.8L393 185Z" fill="#FFF" fill-opacity=".95"/><circle cx="297" cy="246" r="6" fill="#53DFC0"/><circle cx="322" cy="37" r="4" fill="#FFB75E"/></svg><span class="art-caption">Gợi ý đúng gu của bạn</span></div>
-      </div>
-      <div class="form-layout"><form id="consult-form" class="form-card" novalidate><h2>Yêu cầu tư vấn</h2><div class="fields two"><label>Họ và tên *<input name="contact_name" required maxlength="120" autocomplete="name"></label><label>Số điện thoại *<input name="phone" required inputmode="tel" autocomplete="tel" placeholder="0912 345 678"></label><label>Email<input name="email_from" type="email" autocomplete="email"></label><label>Chi nhánh hỗ trợ *<select name="branch" required><option value="CH01">CH01 · 136 Nguyễn Thái Học</option><option value="CH02">CH02 · 21A Hàng Bài</option></select></label><label>Nhóm ưu đãi<select name="customer_segment"><option value="">S-New</option><option value="student">S-Student</option><option value="teacher">S-Teacher</option></select></label><label>Sản phẩm quan tâm<select name="product_id" id="consult-product"><option value="">Nhu cầu chung</option></select></label></div><label>Nội dung cần tư vấn *<textarea name="note" required rows="5" placeholder="Ví dụ: Mình muốn hỏi ưu đãi sinh viên và chương trình thu cũ đổi mới…"></textarea></label><div class="form-message" aria-live="polite"></div><button class="primary submit-btn" type="submit">Gửi yêu cầu tư vấn</button></form>
-        <aside class="info-card"><span class="info-icon" aria-hidden="true">✦</span><h2>Chi nhánh hỗ trợ</h2><p>Nhân viên chi nhánh bạn chọn sẽ liên hệ theo số điện thoại đã nhập.</p><ul><li><strong>CH01</strong> · 136 Nguyễn Thái Học</li><li><strong>CH02</strong> · 21A Hàng Bài</li></ul></aside></div>
-    </section>
-
-    <section class="view shell page-section" id="view-cart" aria-labelledby="cart-title">
-      <div class="section-intro"><p class="eyebrow">Thanh toán khi nhận hàng</p><h1 id="cart-title">Giỏ hàng của bạn</h1><p>Kiểm tra sản phẩm và địa chỉ giao. Chi nhánh sẽ gọi để xác nhận đơn COD.</p></div>
-      <div class="cart-layout"><div class="cart-card"><h2>Sản phẩm đã chọn</h2><div id="cart-items"></div><div class="totals"><span>Tạm tính <strong id="subtotal">0 ₫</strong></span><span>VAT 10% tham khảo <strong id="vat">0 ₫</strong></span><span class="grand">Tổng tham khảo <strong id="estimate">0 ₫</strong></span></div></div>
-        <form id="order-form" class="form-card compact" novalidate><h2>Thông tin nhận hàng</h2><label>Họ và tên *<input name="customer_name" required autocomplete="name"></label><label>Số điện thoại *<input name="phone" required inputmode="tel" autocomplete="tel"></label><label>Email<input name="email" type="email" autocomplete="email"></label><label>Chi nhánh xử lý *<select name="branch"><option value="CH01">CH01 · 136 Nguyễn Thái Học</option><option value="CH02">CH02 · 21A Hàng Bài</option></select></label><label>Địa chỉ giao COD *<textarea name="address" required rows="3" autocomplete="street-address"></textarea></label><label>Ghi chú<textarea name="note" rows="2"></textarea></label><div class="form-message" aria-live="polite"></div><button class="primary submit-btn" type="submit">Đặt hàng COD</button></form></div>
-    </section>
-
-    <section class="view shell page-section" id="view-warranty" aria-labelledby="warranty-title">
-      <div class="section-intro warranty-intro">
-        <div class="section-copy"><p class="eyebrow"><span class="section-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="m12 2.5 8 3.2v5.9c0 5.4-3.3 8.9-8 11-4.7-2.1-8-5.6-8-11V5.7l8-3.2Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="m8.5 12 2.3 2.3 4.8-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Chăm sóc sau mua</p><h1 id="warranty-title">Bảo hành minh bạch.<br><span>Theo dõi thật an tâm.</span></h1><p>Gửi yêu cầu hỗ trợ và theo dõi từng bước xử lý ngay trên một nơi.</p><div class="banner-points"><span>01 · Tiếp nhận yêu cầu</span><span>02 · Cập nhật tiến độ</span></div></div>
-        <div class="section-art warranty-art" aria-hidden="true"><svg viewBox="0 0 480 300" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="warrantyShield" x1="188" y1="34" x2="309" y2="219" gradientUnits="userSpaceOnUse"><stop stop-color="#6BE3C4"/><stop offset="1" stop-color="#12A681"/></linearGradient><linearGradient id="warrantyCard" x1="289" y1="153" x2="435" y2="264" gradientUnits="userSpaceOnUse"><stop stop-color="#FFF"/><stop offset="1" stop-color="#D9F8EE"/></linearGradient><filter id="warrantyShadow" x="18" y="4" width="449" height="300" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feDropShadow dx="0" dy="13" stdDeviation="13" flood-color="#071F28" flood-opacity=".35"/></filter></defs><circle cx="247" cy="145" r="123" fill="#6BE3C4" fill-opacity=".1"/><circle cx="247" cy="145" r="94" stroke="#C8FFF0" stroke-opacity=".22" stroke-dasharray="3 9"/><path d="M62 157h86c13 0 20-8 27-18l17-25c7-10 13-15 25-15h45c13 0 19 5 28 16l22 28c7 9 14 14 26 14h76" stroke="#76E9CC" stroke-opacity=".52" stroke-width="3" stroke-linecap="round" stroke-dasharray="5 8"/><g filter="url(#warrantyShadow)"><path d="m237 31 70 28v50c0 48-29 81-70 100-41-19-70-52-70-100V59l70-28Z" fill="url(#warrantyShield)" stroke="#D8FFF4" stroke-width="3"/><path d="m205 108 22 22 45-48" stroke="#FFF" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/><circle cx="237" cy="112" r="92" stroke="#B8FBE8" stroke-opacity=".32" stroke-width="2"/><rect x="37" y="174" width="151" height="83" rx="17" fill="#FFF"/><circle cx="62" cy="200" r="11" fill="#D7F7ED"/><path d="m58 200 3 3 6-6" stroke="#108867" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M81 197h88M81 205h58" stroke="#71868A" stroke-width="4" stroke-linecap="round"/><rect x="57" y="222" width="111" height="20" rx="10" fill="#E6F8F2"/><path d="M68 232h70" stroke="#0C9877" stroke-width="3" stroke-linecap="round"/><rect x="294" y="166" width="151" height="96" rx="17" fill="url(#warrantyCard)"/><path d="M314 187h73M314 196h49" stroke="#91AAA7" stroke-width="4" stroke-linecap="round"/><path d="M314 218h106" stroke="#D1E9E1" stroke-width="5" stroke-linecap="round"/><circle cx="326" cy="238" r="7" fill="#17B58A"/><circle cx="368" cy="238" r="7" fill="#17B58A"/><circle cx="410" cy="238" r="7" fill="#D2E5DF"/><path d="M333 238h28M375 238h28" stroke="#68C9AA" stroke-width="3" stroke-linecap="round"/></g><circle cx="365" cy="78" r="19" fill="#FFBE73"/><path d="m365 67 3.2 6.5 7.2 1-5.2 5 1.2 7.1-6.4-3.4-6.4 3.4 1.2-7.1-5.2-5 7.2-1L365 67Z" fill="#FFF"/><circle cx="115" cy="132" r="5" fill="#FFBE73"/><circle cx="414" cy="133" r="4" fill="#72E4C5"/></svg><span class="art-caption">Luôn cập nhật từng trạng thái</span></div>
-      </div>
-      <div class="subtabs" role="tablist" aria-label="Dịch vụ bảo hành">
-        <button class="subtab active" id="tab-ticket-create" role="tab" aria-selected="true" aria-controls="ticket-create" data-panel="ticket-create">Gửi bảo hành</button>
-        <button class="subtab" id="tab-ticket-check" role="tab" tabindex="-1" aria-selected="false" aria-controls="ticket-check" data-panel="ticket-check">Tra cứu tiến độ</button>
-      </div>
-      <div class="subpanel active" id="ticket-create"><div class="form-layout"><form id="ticket-form" class="form-card" novalidate><h2>Thông tin yêu cầu</h2><div class="fields two"><label>Họ và tên *<input name="partner_name" required autocomplete="name"></label><label>Số điện thoại *<input name="partner_phone" required inputmode="tel" autocomplete="tel"></label><label>Email<input name="partner_email" type="email" autocomplete="email"></label><label>Chi nhánh tiếp nhận *<select name="branch"><option value="CH01">CH01 · 136 Nguyễn Thái Học</option><option value="CH02">CH02 · 21A Hàng Bài</option></select></label><label>Loại yêu cầu *<select name="loai_yeu_cau"><option>Bảo hành sửa chữa</option><option>Đổi trả sản phẩm</option><option>Khiếu nại / Tư vấn hậu mãi</option></select></label><label>Sản phẩm<select name="product_id" id="ticket-product"><option value="">Sản phẩm khác</option></select></label><label>Tên thiết bị *<input name="ten_thiet_bi" required></label><label>IMEI / Serial<input name="so_imei_serial"></label></div><label>Tiêu đề yêu cầu *<input name="subject" required></label><label>Mô tả tình trạng *<textarea name="description" required rows="4"></textarea></label><div class="form-message" aria-live="polite"></div><button class="primary submit-btn" type="submit">Gửi yêu cầu bảo hành</button></form><aside class="info-card amber"><span class="info-icon">72h</span><h2>SLA được tạm dừng hợp lý</h2><p>Phiếu online vào trạng thái “Chờ khách / Chờ linh kiện”. Đồng hồ SLA 72 giờ tạm dừng cho đến khi quầy thực sự nhận thiết bị.</p></aside></div></div>
-      <div class="subpanel" id="ticket-check"><form id="lookup-form" class="lookup-card" novalidate><div><h2>Tra cứu phiếu bảo hành</h2><p>Nhập đồng thời mã phiếu và SĐT đã đăng ký.</p></div><label>Mã phiếu *<input name="ticket_code" required placeholder="#00043"></label><label>Số điện thoại *<input name="phone" required inputmode="tel" placeholder="0909 112 233"></label><button class="primary submit-btn" type="submit">Tra cứu tiến độ</button><div class="form-message" aria-live="polite"></div></form><div id="ticket-result" aria-live="polite"></div></div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="footer-main shell">
-      <section class="footer-brand" aria-labelledby="footer-brand-title">
-        <div class="footer-brand-lockup"><img src="assets/cellphones-mark.svg" alt="" width="42" height="42"><div><strong id="footer-brand-title">CellphoneS CRM</strong><span class="demo-badge">BẢN MÔ PHỎNG</span></div></div>
-        <p>Sản phẩm thực hành học phần EC213 · Trường Đại học Công nghệ Thông tin, ĐHQG-HCM.</p>
-        <p class="footer-contact"><strong>Liên hệ về đồ án:</strong> qua nhóm thực hiện trên kênh học tập của học phần EC213.</p>
-        <p class="footer-disclaimer">Đây không phải website chính thức, không đại diện hoặc liên kết với CellphoneS. Tên và nhãn hiệu CellphoneS thuộc chủ sở hữu tương ứng; chỉ được dùng để minh họa học thuật.</p>
-      </section>
-      <nav class="footer-nav" aria-label="Liên kết dịch vụ">
-        <h2>Dịch vụ</h2>
-        <button type="button" data-view="consult">Tư vấn mua hàng</button>
-        <button type="button" data-view="warranty" data-open-panel="ticket-create">Gửi bảo hành</button>
-        <button type="button" data-view="warranty" data-open-panel="ticket-check">Tra cứu tiến độ</button>
-      </nav>
-      <section class="footer-legal" aria-labelledby="footer-legal-title">
-        <h2 id="footer-legal-title">Thông tin &amp; chính sách</h2>
-        <details><summary>Thông tin sản phẩm và giao dịch</summary><p><!-- COMMERCE-NOTICE --></p></details>
-        <details><summary>Quyền riêng tư và dữ liệu</summary><p><!-- MODE-NOTICE --></p><p>Không dùng biểu mẫu tra cứu để truy cập dữ liệu của người khác.</p></details>
-        <details><summary>Điều kiện sử dụng</summary><p>Chỉ sử dụng cho học tập và trình diễn nội bộ. Không dựa vào nội dung, giá hoặc thông tin bảo hành tại đây để đưa ra quyết định mua hàng hay yêu cầu dịch vụ thực tế.</p></details>
-      </section>
-    </div>
-    <div class="footer-bottom"><div class="shell"><span>Đồ án CRM · EC213 · UIT</span><span>Dữ liệu và luồng nghiệp vụ mô phỏng</span></div></div>
-  </footer>
-  <div class="toast" id="toast" role="status" aria-live="polite"></div>
-</body>
+    </body>
 </html>

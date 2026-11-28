@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Plugin Name: CellphoneS CRM Portal
  * Description: Customer portal for the CellphoneS CRM course project.
@@ -8,10 +9,15 @@
 
 defined('ABSPATH') || exit;
 
-function cellphones_portal_assets(): void {
+// These APIs are provided by WordPress; the editor may not have its stubs indexed.
+// @intelephense-ignore-start
+require_once __DIR__ . '/custom-app/admin.php';
+
+function cellphones_portal_assets(): void 
+{
     $base = plugin_dir_url(__FILE__);
-    wp_enqueue_style('cellphones-portal', $base . 'assets/css/style.css', [], '1.2.4');
-    wp_enqueue_script('cellphones-portal', $base . 'assets/js/app.js', [], '1.0.1', true);
+    wp_enqueue_style('cellphones-portal', $base . 'assets/css/style.css', [], '1.2.5');
+    wp_enqueue_script('cellphones-portal', $base . 'assets/js/app.js', [], '1.0.3', true);
     wp_add_inline_script(
         'cellphones-portal',
         'window.CELLPHONES_API_URL = ' . wp_json_encode($base . 'api.php') . ';',
@@ -19,7 +25,8 @@ function cellphones_portal_assets(): void {
     );
 }
 
-function cellphones_portal_shortcode(): string {
+function cellphones_portal_shortcode(): string
+{
     $html = file_get_contents(__DIR__ . '/index.html');
     if ($html === false || !preg_match('/<body[^>]*>(.*?)<\/body>/si', $html, $matches)) {
         return '<p>Không tải được cổng khách hàng. Vui lòng thử lại.</p>';
@@ -47,7 +54,8 @@ function cellphones_portal_shortcode(): string {
 
 add_shortcode('cellphones_crm_portal', 'cellphones_portal_shortcode');
 
-function cellphones_portal_create_page(): void {
+function cellphones_portal_create_page(): void
+{
     if (get_option('cellphones_portal_page_created')) {
         return;
     }
@@ -68,3 +76,4 @@ function cellphones_portal_create_page(): void {
 }
 
 register_activation_hook(__FILE__, 'cellphones_portal_create_page');
+// @intelephense-ignore-end

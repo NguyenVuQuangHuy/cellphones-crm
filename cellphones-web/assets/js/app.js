@@ -1,14 +1,11 @@
 "use strict";
 
 const state = { products: [], category: "Tất cả", cart: loadCart() };
-const $ = (s, root = document) => root.querySelector(s);
-const $$ = (s, root = document) => [...root.querySelectorAll(s)];
+const portal = document.querySelector(".cps-portal");
+const $ = (s, root = portal) => root.querySelector(s);
+const $$ = (s, root = portal) => [...root.querySelectorAll(s)];
 const money = (n) => new Intl.NumberFormat("vi-VN", { style: "currency", currency: "VND", maximumFractionDigits: 0 }).format(Number(n) || 0);
 const escapeHtml = (value) => String(value ?? "").replace(/[&<>'"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;" }[c]));
-const categoryTones = {
-  "Điện thoại": "violet", Laptop: "coral", Tablet: "mint",
-  "Đồng hồ thông minh": "mint", "Âm thanh": "violet", "Phụ kiện": "coral"
-};
 
 function loadCart() {
   try { const data = JSON.parse(localStorage.getItem("cellphones-cart") || "[]"); return Array.isArray(data) ? data : []; }
@@ -60,7 +57,7 @@ async function api(action, data = {}) {
 async function loadProducts() {
   try {
     const result = await api("get_products"); state.products = result.data.items || [];
-    const source = { mock_fallback: "Dữ liệu mô phỏng · 45 sản phẩm", cache: "Dữ liệu cache Odoo · tối đa 5 phút", odoo_live: "Đồng bộ trực tiếp từ Odoo", fallback_on_error: "Odoo tạm gián đoạn · đang dùng dữ liệu dự phòng" }[result.data.source] || "45 sản phẩm";
+    const source = { mock_fallback: `Dữ liệu mô phỏng · ${state.products.length} sản phẩm`, cache: "Dữ liệu lưu từ Odoo · tối đa 5 phút", odoo_live: "Đồng bộ trực tiếp từ Odoo", fallback_on_error: "Odoo tạm gián đoạn · đang dùng dữ liệu dự phòng" }[result.data.source] || `${state.products.length} sản phẩm`;
     state.products = [...state.products].sort((a, b) => Number(b.qty_available > 0) - Number(a.qty_available > 0));
     $("#source-label").textContent = source; fillProductSelects(); renderFilters(); renderProducts();
   } catch (error) { $("#product-grid").innerHTML = `<div class="empty">${escapeHtml(error.message)}</div>`; $("#source-label").textContent = "Chưa tải được dữ liệu"; }
@@ -79,20 +76,22 @@ function renderFilters() {
   }).join("");
 }
 function renderProducts() {
+  if (!$("#category-filters").childElementCount) return;
   const term = $("#product-search").value.trim().toLocaleLowerCase("vi"); const stockOnly = $("#stock-only").checked;
   const list = state.products.filter(p => (state.category === "Tất cả" || p.category === state.category) && (!stockOnly || Number(p.qty_available) > 0) && (!term || `${p.name} ${p.default_code}`.toLocaleLowerCase("vi").includes(term)));
+  $("#filter-summary").textContent = `${list.length} sản phẩm phù hợp.`;
   $("#product-grid").innerHTML = list.length ? list.map(p => {
     const quantity = Number(p.qty_available);
     const stockLabel = quantity > 0 ? `Sẵn hàng tại quầy (SL: ${quantity})` : "Đặt trước / Giao từ kho tổng";
     return `<article class="product-card">
-      <div class="meta"><span class="product-category ${categoryTones[p.category] || "violet"}">${escapeHtml(p.category)}</span><code>${escapeHtml(p.default_code)}</code></div>
       <h3>${escapeHtml(p.name)}</h3>
+      <div class="meta"><span>${escapeHtml(p.category)}</span><span>${escapeHtml(p.default_code)}</span></div>
       <p class="desc">${escapeHtml(p.description_sale || "Thông tin bảo hành đang cập nhật.")}</p>
       <div class="price">${money(p.list_price)}</div>
       <div class="stock ${quantity > 0 ? "available" : ""}">${stockLabel}</div>
-      <div class="card-actions"><button data-consult="${Number(p.id)}">Tư vấn SP này</button><button class="add" data-add="${Number(p.id)}">+ Thêm vào giỏ</button></div>
+      <div class="card-actions"><button data-consult="${Number(p.id)}">Tư vấn</button><button class="add" data-add="${Number(p.id)}">Thêm vào giỏ</button></div>
     </article>`;
-  }).join("") : '<div class="empty">Không có sản phẩm phù hợp bộ lọc.</div>';
+  }).join("") : '<div class="empty">Chưa có sản phẩm phù hợp. Hãy đổi từ khóa hoặc điều chỉnh bộ lọc.</div>';
 }
 function addToCart(id) {
   const product = state.products.find(p => Number(p.id) === Number(id)); if (!product) return;
@@ -101,7 +100,23 @@ function addToCart(id) {
 }
 function renderCart() {
   const box = $("#cart-items");
-  box.innerHTML = state.cart.length ? state.cart.map(i => `<div class="cart-row"><div><h3>${escapeHtml(i.name)}</h3><p>${escapeHtml(i.code)} · <button class="remove" data-remove="${i.product_id}">Xóa</button></p></div><div class="qty"><button data-qty="${i.product_id}" data-delta="-1" aria-label="Giảm số lượng">−</button><span>${i.qty}</span><button data-qty="${i.product_id}" data-delta="1" aria-label="Tăng số lượng">+</button></div><strong>${money(i.price * i.qty)}</strong></div>`).join("") : '<div class="empty">Giỏ hàng đang trống. Hãy chọn sản phẩm trước khi đặt COD.</div>';
+  box.innerHTML = state.cart.length ? state.cart.map(item => {
+    const id = escapeHtml(item.product_id);
+    const name = escapeHtml(item.name);
+    return `<div class="cart-row">
+      <div>
+        <h3>${name}</h3>
+        <p>${escapeHtml(item.code)}</p>
+        <button class="remove" data-remove="${id}" aria-label="Xóa ${name} khỏi giỏ">Xóa</button>
+      </div>
+      <div class="qty" role="group" aria-label="Số lượng ${name}">
+        <button data-qty="${id}" data-delta="-1" aria-label="Giảm số lượng ${name}">−</button>
+        <span>${escapeHtml(item.qty)}</span>
+        <button data-qty="${id}" data-delta="1" aria-label="Tăng số lượng ${name}">+</button>
+      </div>
+      <strong>${money(item.price * item.qty)}</strong>
+    </div>`;
+  }).join("") : '<div class="empty">Giỏ hàng đang trống. Hãy chọn sản phẩm trước khi đặt COD.</div>';
   const subtotal = state.cart.reduce((sum, i) => sum + i.price * i.qty, 0); $("#subtotal").textContent = money(subtotal); $("#vat").textContent = money(subtotal * .1); $("#estimate").textContent = money(subtotal * 1.1);
 }
 
@@ -124,8 +139,6 @@ function validateForm(form) {
       else field.value = phone;
     } else if (field.type === "email" && !field.checkValidity()) {
       hint = "Nhập địa chỉ email hợp lệ.";
-    } else if (field.name === "ticket_code" && !/^#?\s*\d+$/.test(value)) {
-      hint = "Nhập mã phiếu, ví dụ #00043.";
     }
     if (hint) {
       const error = document.createElement("span");
@@ -145,7 +158,7 @@ function validateForm(form) {
   return false;
 }
 function message(form, text, type = "success", copy = "") {
-  const box = $(".form-message", form); box.className = `form-message show ${type}`; box.innerHTML = `${escapeHtml(text)}${copy ? ` <button type="button" class="copy-code" data-copy="${escapeHtml(copy)}">Copy mã</button>` : ""}`;
+  const box = $(".form-message", form); box.className = `form-message show ${type}`; box.innerHTML = `${escapeHtml(text)}${copy ? ` <button type="button" class="copy-code" data-copy="${escapeHtml(copy)}">Sao chép mã</button>` : ""}`;
 }
 function formData(form) { return Object.fromEntries(new FormData(form).entries()); }
 async function submit(form, action, transform, success) {
@@ -154,7 +167,7 @@ async function submit(form, action, transform, success) {
   const label = button.textContent;
   button.disabled = true;
   button.setAttribute("aria-busy", "true");
-  button.textContent = "Đang xử lý đồng bộ Odoo…";
+  button.textContent = action === "check_ticket" ? "Đang tra cứu…" : "Đang gửi yêu cầu…";
   try { const result = await api(action, transform(formData(form))); success(result); }
   catch (error) { message(form, error.message, "error"); }
   finally {
@@ -175,16 +188,22 @@ function renderTicket(data) {
     <strong>${escapeHtml(repair.name)}</strong>
     <span>${escapeHtml(repair.state_label)} · ${repair.under_warranty ? "Trong bảo hành" : "Ngoài bảo hành"}</span>
   </div>`).join("");
-  $("#ticket-result").innerHTML = `<article class="ticket-card">
-    <div class="ticket-top"><div><p class="eyebrow">Phiếu #${escapeHtml(data.ticket_ref)}</p>
-    <h2>${escapeHtml(data.subject)}</h2><p>${escapeHtml(data.branch_label)} · Cập nhật ${escapeHtml(data.updated_at)}</p></div>
-    <span class="status-chip">${data.sla_paused ? "SLA đang tạm dừng" : escapeHtml(data.stage_name)}</span></div>
+  const updated = data.updated_at ? ` · Cập nhật ${escapeHtml(data.updated_at)}` : "";
+  return `<article class="ticket-card">
+    <div class="ticket-top">
+      <div>
+        ${data.ticket_ref ? `<p class="ticket-ref">Phiếu #${escapeHtml(data.ticket_ref)}</p>` : ""}
+        <h2>${escapeHtml(data.subject || data.device_name || "Thiết bị bảo hành")}</h2>
+        <p>${escapeHtml(data.branch_label)}${updated}</p>
+      </div>
+      <span class="status-chip${data.sla_paused ? " paused" : ""}">${data.sla_paused ? "SLA đang tạm dừng" : escapeHtml(data.stage_name)}</span>
+    </div>
     <ol class="stepper" aria-label="Tiến độ bảo hành">${steps}</ol>
     ${repairs ? `<div class="repairs"><h3>Lệnh sửa chữa kỹ thuật</h3>${repairs}</div>` : ""}
   </article>`;
 }
 
-document.addEventListener("click", async (event) => {
+portal.addEventListener("click", async (event) => {
   const nav = event.target.closest("[data-view]");
   if (nav) {
     if (nav.dataset.openPanel) showPanel(nav.dataset.openPanel);
@@ -201,10 +220,27 @@ document.addEventListener("click", async (event) => {
   }
   const add = event.target.closest("[data-add]"); if (add) addToCart(add.dataset.add);
   const consult = event.target.closest("[data-consult]"); if (consult) { $("#consult-product").value = consult.dataset.consult; showView("consult"); }
-  const qty = event.target.closest("[data-qty]"); if (qty) { const item = state.cart.find(i => i.product_id === Number(qty.dataset.qty)); if (item) { item.qty = Math.max(1, item.qty + Number(qty.dataset.delta)); saveCart(); renderCart(); } }
-  const remove = event.target.closest("[data-remove]"); if (remove) { state.cart = state.cart.filter(i => i.product_id !== Number(remove.dataset.remove)); saveCart(); renderCart(); }
+  const qty = event.target.closest("[data-qty]");
+  if (qty) {
+    const item = state.cart.find(i => i.product_id === Number(qty.dataset.qty));
+    if (item) {
+      item.qty = Math.max(1, item.qty + Number(qty.dataset.delta));
+      saveCart();
+      renderCart();
+      $(`[data-qty="${item.product_id}"][data-delta="${qty.dataset.delta}"]`).focus({ preventScroll: true });
+    }
+  }
+  const remove = event.target.closest("[data-remove]");
+  if (remove) {
+    const position = $$("[data-remove]").indexOf(remove);
+    state.cart = state.cart.filter(i => i.product_id !== Number(remove.dataset.remove));
+    saveCart();
+    renderCart();
+    const remaining = $$("[data-remove]");
+    (remaining[Math.min(position, remaining.length - 1)] || $("#cart-items-title")).focus();
+  }
   const sub = event.target.closest("[data-panel]"); if (sub) showPanel(sub.dataset.panel);
-  const copy = event.target.closest("[data-copy]"); if (copy) { try { await navigator.clipboard.writeText(copy.dataset.copy); toast("Đã copy mã"); } catch { toast(`Mã: ${copy.dataset.copy}`); } }
+  const copy = event.target.closest("[data-copy]"); if (copy) { try { await navigator.clipboard.writeText(copy.dataset.copy); toast("Đã sao chép mã"); } catch { toast(`Mã: ${copy.dataset.copy}`); } }
 });
 
 $(".menu-toggle").addEventListener("click", e => { const open = $("#main-nav").classList.toggle("open"); e.currentTarget.setAttribute("aria-expanded", String(open)); });
@@ -281,9 +317,9 @@ $("#lookup-form").addEventListener("submit", event => {
   const form = event.currentTarget;
   if ($(".submit-btn", form).disabled) return;
   $("#ticket-result").replaceChildren();
-  submit(form, "check_ticket", data => data, result => {
+  submit(form, "check_ticket", ({ phone }) => ({ phone }), result => {
     message(form, result.message, "success");
-    renderTicket(result.data);
+    $("#ticket-result").innerHTML = result.data.tickets.map(renderTicket).join("");
   });
 });
 
